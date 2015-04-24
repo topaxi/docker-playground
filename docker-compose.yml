@@ -39,6 +39,8 @@ redis1:
 
 postgres1:
   image: postgres
+  volumes:
+    - ./tools/docker/postgres:/docker-entrypoint-initdb.d
   environment:
     - POSTGRES_USER=test
     - POSTGRES_PASSWORD=test
