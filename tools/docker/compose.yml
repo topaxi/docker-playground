@@ -1,0 +1,16 @@
+web:
+  image: nginx
+  volumes:
+    - ../../frontend/dist:/usr/share/nginx/html
+    - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+
+backend:
+  build: ../../backend/
+
+redis:
+  image: redis
+
+postgres:
+  image: postgres
+  volumes:
+    - ./postgres:/docker-entrypoint-initdb.d
