@@ -1,0 +1,11 @@
+{
+  "name": "backend",
+  "description": "Backend for App",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "babel-node bin/app.js"
+  },
+  "dependencies": {
+    "babel": "^5.1.11"
+  }
+}

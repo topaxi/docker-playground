@@ -1,0 +1,44 @@
+web1:
+  image: nginx
+  links:
+    - backend1
+    - backend2
+    - backend3
+  volumes:
+    - ./frontend/dist:/usr/share/nginx/html
+    - ./tools/docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+  ports:
+    - "8080:80"
+
+backend1:
+  build: ./backend/
+  links:
+    - redis1
+    - postgres1
+  environment:
+    - TEST=1
+
+backend2:
+  build: ./backend/
+  links:
+    - redis1
+    - postgres1
+  environment:
+    - TEST=1
+
+backend3:
+  build: ./backend/
+  links:
+    - redis1
+    - postgres1
+  environment:
+    - TEST=1
+
+redis1:
+  image: redis
+
+postgres1:
+  image: postgres
+  environment:
+    - POSTGRES_USER=test
+    - POSTGRES_PASSWORD=test
