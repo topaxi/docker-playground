@@ -1,11 +1,22 @@
 web:
   image: nginx
   volumes:
-    - ../../frontend/dist:/usr/share/nginx/html
     - ./nginx/nginx.conf:/etc/nginx/nginx.conf
 
 backend:
   build: ../../backend/
+
+backend-dev:
+  image: iojs
+  volumes:
+    - ../../backend:/usr/src/app
+  command: npm --prefix=/usr/src/app run watch
+
+frontend-dev:
+  image: iojs
+  volumes:
+    - ../../frontend:/usr/src/app
+  command: npm --prefix=/usr/src/app run start
 
 redis:
   image: redis

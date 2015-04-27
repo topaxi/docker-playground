@@ -3,52 +3,44 @@ web1:
     file: ./tools/docker/compose.yml
     service: web
   volumes:
-    - ./tools/docker/nginx/nginx-dev.conf:/etc/nginx/nginx.conf
+    - ./frontend/dist:/usr/share/nginx/html
   image: nginx
   links:
-    - backenddev1
-    - backenddev2
-    - backenddev3
-    - frontenddev1
+    - backend1
+    - backend2
+    - backend3
   ports:
     - "8080:80"
 
-backenddev1:
+backend1:
   extends:
     file: ./tools/docker/compose.yml
-    service: backend-dev
+    service: backend
   links:
     - redis1
     - postgres1
   environment:
     - TEST=1
 
-backenddev2:
+backend2:
   extends:
     file: ./tools/docker/compose.yml
-    service: backend-dev
+    service: backend
   links:
     - redis1
     - postgres1
   environment:
     - TEST=2
 
-backenddev3:
+backend3:
   extends:
     file: ./tools/docker/compose.yml
-    service: backend-dev
+    service: backend
   links:
     - redis1
     - postgres1
   environment:
     - TEST=3
-
-frontenddev1:
-  extends:
-    file: ./tools/docker/compose.yml
-    service: frontend-dev
-  volumes:
-    - ./frontend:/usr/src/app
 
 redis1:
   extends:
