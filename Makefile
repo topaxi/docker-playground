@@ -1,5 +1,4 @@
 install: cache-clean install-frontend install-backend
-	npm install
 
 install-frontend:
 	cd frontend && npm install
