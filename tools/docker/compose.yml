@@ -5,12 +5,16 @@ web:
 
 backend:
   build: ../../backend/
+  environment:
+    - NODE_ENV=production
 
 backend-dev:
   image: iojs
   volumes:
     - ../../backend:/usr/src/app
   command: npm --prefix=/usr/src/app run watch
+  environment:
+    - NODE_ENV=development
 
 frontend-dev:
   image: iojs

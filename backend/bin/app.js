@@ -3,7 +3,12 @@ import morgan  from 'morgan'
 
 let app = express()
 
-app.use(morgan('combined'))
+if (app.get('env') === 'production') {
+  app.use(morgan('combined'))
+}
+else if (app.get('env') === 'development') {
+  app.use(morgan('dev'))
+}
 
 app.get('/api', (req, res) => {
   res.send(`Hello World ${process.env.TEST}!`)
