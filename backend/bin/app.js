@@ -1,21 +1,9 @@
-import express from 'express'
-import morgan  from 'morgan'
+import app from '../src/app'
 
-let app = express()
+start(process.env.PORT)
 
-if (app.get('env') === 'production') {
-  app.use(morgan('combined'))
+function start(port = 3000) {
+  app.listen(port, () => {
+    console.log(`Backend listening on port: ${port}`)
+  })
 }
-else if (app.get('env') === 'development') {
-  app.use(morgan('dev'))
-}
-
-app.get('/api', (req, res) => {
-  res.send(`Hello World ${process.env.TEST}!`)
-})
-
-let server = app.listen(3000, () => {
-  let { port } = server.address()
-
-  console.log(`Backend listening on port: ${port}`)
-})
