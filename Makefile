@@ -10,3 +10,11 @@ install-backend:
 cache-clean:
 	npm cache clean
 	bower cache clean
+
+test: test-backend test-frontend
+
+test-backend:
+	npm --prefix=./backend run test
+
+test-frontend:
+	npm --prefix=./frontend run test
